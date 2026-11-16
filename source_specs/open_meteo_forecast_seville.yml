@@ -1,0 +1,24 @@
+source_name: open_meteo_forecast_seville
+source_type: http_api
+description: 'Open-Meteo forecast API: hourly temperature (°C), wind speed (km/h),
+  shortwave solar radiation (W/m²) and relative humidity (%) for Seville, Spain.'
+auth:
+  type: none
+incremental:
+  type: date_range
+  days_back: 1
+  chunk_days: 7
+  date_format: '%Y-%m-%d'
+  end_offset_days: 2
+endpoints:
+- name: hourly_forecast
+  url: https://api.open-meteo.com/v1/forecast
+  method: GET
+  response_format: json
+  params:
+    latitude: '37.3891'
+    longitude: '-5.9845'
+    hourly: temperature_2m,wind_speed_10m,shortwave_radiation,relative_humidity_2m
+    timezone: Europe/Madrid
+    start_date: '{start}'
+    end_date: '{end}'

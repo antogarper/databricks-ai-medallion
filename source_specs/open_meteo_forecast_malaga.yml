@@ -1,0 +1,24 @@
+source_name: open_meteo_forecast_malaga
+source_type: http_api
+description: 'Open-Meteo forecast API: hourly temperature (°C), wind speed (km/h)
+  and shortwave solar radiation (W/m²) for Málaga, Spain.'
+auth:
+  type: none
+incremental:
+  type: date_range
+  days_back: 1
+  chunk_days: 2
+  date_format: '%Y-%m-%d'
+  end_offset_days: 2
+endpoints:
+- name: hourly_forecast
+  url: https://api.open-meteo.com/v1/forecast
+  method: GET
+  response_format: json
+  params:
+    latitude: '36.7202'
+    longitude: '-4.4203'
+    hourly: temperature_2m,windspeed_10m,shortwave_radiation
+    timezone: Europe/Madrid
+    start_date: '{start}'
+    end_date: '{end}'
