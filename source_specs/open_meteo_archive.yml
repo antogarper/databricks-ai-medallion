@@ -5,12 +5,14 @@ description: "Open-Meteo historical weather API (observed/reanalysis): hourly te
 auth:
   type: none
 
-incremental:
-  type: date_range
-  days_back: 90
-  chunk_days: 7
+load:
+  strategy: incremental
+  unit: day
+  initial_window: 90         # days loaded on the first run
+  refresh_window: 10         # 5-day publication delay + recent revisions
+  chunk_size: 7              # days per API call (Monday-Sunday weeks)
+  end_offset: -5             # the archive API publishes data with a ~5 day delay
   date_format: "%Y-%m-%d"
-  end_offset_days: -5        # the archive API publishes data with a ~5 day delay
 
 endpoints:
   - name: hourly_weather
