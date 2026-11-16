@@ -8,10 +8,10 @@ auth:
 load:
   strategy: incremental
   unit: year
-  initial_window: 3          # 3 previous years on the first run
-  refresh_window: 1          # every run: previous year, current year...
-  chunk_size: 1              # one year per call
-  end_offset: 1              # ...and next year (published in advance)
+  history_start: "2023-01-01"   # history kept since 2023
+  refresh_window: 1             # every run: previous year, current year...
+  chunk_size: 1                 # one year per call
+  end_offset: 1                 # ...and next year (published in advance)
   date_format: "%Y"
 
 endpoints:

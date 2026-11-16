@@ -8,10 +8,11 @@ auth:
 load:
   strategy: incremental
   unit: day
-  initial_window: 90         # days loaded on the first run
-  refresh_window: 7          # days re-loaded on every later run (late corrections)
-  chunk_size: 7              # days per API call (Monday-Sunday weeks)
-  end_offset: 0              # up to today
+  history_start: "2025-01-01"   # history kept since this date
+  refresh_window: 7             # daily run: last 7 days (late corrections)
+  reconcile_window: 60          # weekly reconciliation: last 60 days
+  chunk_size: 7                 # days per API call (Monday-Sunday weeks)
+  end_offset: 0                 # up to today
   date_format: "%Y-%m-%d"
 
 endpoints:

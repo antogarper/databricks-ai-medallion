@@ -8,10 +8,11 @@ auth:
 load:
   strategy: incremental
   unit: day
-  initial_window: 90         # days loaded on the first run
-  refresh_window: 10         # 5-day publication delay + recent revisions
-  chunk_size: 7              # days per API call (Monday-Sunday weeks)
-  end_offset: -5             # the archive API publishes data with a ~5 day delay
+  history_start: "2025-01-01"   # history kept since this date
+  refresh_window: 10            # 5-day publication delay + recent revisions
+  reconcile_window: 60          # weekly reconciliation: last 60 days
+  chunk_size: 7                 # days per API call (Monday-Sunday weeks)
+  end_offset: -5                # the archive API publishes data with a ~5 day delay
   date_format: "%Y-%m-%d"
 
 endpoints:
