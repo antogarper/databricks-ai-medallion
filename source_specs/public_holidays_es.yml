@@ -1,0 +1,13 @@
+source_name: public_holidays_es
+source_type: http_api
+description: 'Nager.Date public holidays API: national and regional public holidays
+  in Spain for 2026.'
+auth:
+  type: none
+incremental:
+  type: snapshot
+endpoints:
+- name: holidays_2026
+  url: https://date.nager.at/api/v3/PublicHolidays/2026/ES
+  method: GET
+  response_format: json
