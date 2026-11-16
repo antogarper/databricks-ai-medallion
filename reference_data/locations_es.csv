@@ -1,0 +1,53 @@
+province_code,province_name,capital_name,region_name,electric_system,timezone,latitude,longitude,geonames_id
+01,Araba/Álava,Vitoria-Gasteiz,País Vasco,peninsular,Europe/Madrid,42.85,-2.6727,3104499
+02,Albacete,Albacete,Castilla-La Mancha,peninsular,Europe/Madrid,38.9942,-1.8564,2522258
+03,Alicante/Alacant,Alicante,Comunitat Valenciana,peninsular,Europe/Madrid,38.3452,-0.4815,2521978
+04,Almería,Almería,Andalucía,peninsular,Europe/Madrid,36.8381,-2.4597,2521886
+05,Ávila,Ávila,Castilla y León,peninsular,Europe/Madrid,40.6572,-4.6995,3129136
+06,Badajoz,Badajoz,Extremadura,peninsular,Europe/Madrid,38.8779,-6.9706,2521420
+07,Illes Balears,Palma,Illes Balears,balearic,Europe/Madrid,39.5694,2.6502,2512989
+08,Barcelona,Barcelona,Cataluña,peninsular,Europe/Madrid,41.3888,2.159,3128760
+09,Burgos,Burgos,Castilla y León,peninsular,Europe/Madrid,42.3411,-3.7018,3127461
+10,Cáceres,Cáceres,Extremadura,peninsular,Europe/Madrid,39.4765,-6.3722,2520611
+11,Cádiz,Cádiz,Andalucía,peninsular,Europe/Madrid,36.5267,-6.2891,2520600
+12,Castellón/Castelló,Castellón de la Plana,Comunitat Valenciana,peninsular,Europe/Madrid,39.9857,-0.0493,2519752
+13,Ciudad Real,Ciudad Real,Castilla-La Mancha,peninsular,Europe/Madrid,38.9863,-3.9291,2519402
+14,Córdoba,Córdoba,Andalucía,peninsular,Europe/Madrid,37.8916,-4.7728,2519240
+15,A Coruña,A Coruña,Galicia,peninsular,Europe/Madrid,43.3713,-8.396,3119841
+16,Cuenca,Cuenca,Castilla-La Mancha,peninsular,Europe/Madrid,40.0667,-2.1333,3124132
+17,Girona,Girona,Cataluña,peninsular,Europe/Madrid,41.9831,2.8249,3121456
+18,Granada,Granada,Andalucía,peninsular,Europe/Madrid,37.1882,-3.6067,2517117
+19,Guadalajara,Guadalajara,Castilla-La Mancha,peninsular,Europe/Madrid,40.6286,-3.1618,3121070
+20,Gipuzkoa,Donostia-San Sebastián,País Vasco,peninsular,Europe/Madrid,43.3128,-1.975,3110044
+21,Huelva,Huelva,Andalucía,peninsular,Europe/Madrid,37.2664,-6.94,2516548
+22,Huesca,Huesca,Aragón,peninsular,Europe/Madrid,42.1362,-0.4087,3120514
+23,Jaén,Jaén,Andalucía,peninsular,Europe/Madrid,37.7692,-3.7903,2516395
+24,León,León,Castilla y León,peninsular,Europe/Madrid,42.6,-5.5703,3118532
+25,Lleida,Lleida,Cataluña,peninsular,Europe/Madrid,41.6167,0.6222,3118514
+26,La Rioja,Logroño,La Rioja,peninsular,Europe/Madrid,42.4661,-2.4512,3118150
+27,Lugo,Lugo,Galicia,peninsular,Europe/Madrid,43.0099,-7.556,3117814
+28,Madrid,Madrid,Comunidad de Madrid,peninsular,Europe/Madrid,40.4165,-3.7026,3117735
+29,Málaga,Málaga,Andalucía,peninsular,Europe/Madrid,36.7202,-4.4203,2514256
+30,Murcia,Murcia,Región de Murcia,peninsular,Europe/Madrid,37.987,-1.13,2513416
+31,Navarra,Pamplona,Navarra,peninsular,Europe/Madrid,42.8169,-1.6432,3114472
+32,Ourense,Ourense,Galicia,peninsular,Europe/Madrid,42.3367,-7.8641,3114965
+33,Asturias,Oviedo,Asturias,peninsular,Europe/Madrid,43.3603,-5.8448,3114711
+34,Palencia,Palencia,Castilla y León,peninsular,Europe/Madrid,42.0095,-4.5241,3114531
+35,Las Palmas,Las Palmas de Gran Canaria,Canarias,canary,Atlantic/Canary,28.1018,-15.4157,2515270
+36,Pontevedra,Pontevedra,Galicia,peninsular,Europe/Madrid,42.431,-8.6443,3113209
+37,Salamanca,Salamanca,Castilla y León,peninsular,Europe/Madrid,40.9688,-5.6639,3111108
+38,Santa Cruz de Tenerife,Santa Cruz de Tenerife,Canarias,canary,Atlantic/Canary,28.4682,-16.2546,2511174
+39,Cantabria,Santander,Cantabria,peninsular,Europe/Madrid,43.4659,-3.8049,3109718
+40,Segovia,Segovia,Castilla y León,peninsular,Europe/Madrid,40.9481,-4.1184,3109256
+41,Sevilla,Sevilla,Andalucía,peninsular,Europe/Madrid,37.3828,-5.9732,2510911
+42,Soria,Soria,Castilla y León,peninsular,Europe/Madrid,41.764,-2.4688,3108681
+43,Tarragona,Tarragona,Cataluña,peninsular,Europe/Madrid,41.1191,1.2454,3108288
+44,Teruel,Teruel,Aragón,peninsular,Europe/Madrid,40.3456,-1.1065,3108126
+45,Toledo,Toledo,Castilla-La Mancha,peninsular,Europe/Madrid,39.8581,-4.0226,2510409
+46,Valencia/València,Valencia,Comunitat Valenciana,peninsular,Europe/Madrid,39.4739,-0.3797,2509954
+47,Valladolid,Valladolid,Castilla y León,peninsular,Europe/Madrid,41.6554,-4.7235,3106672
+48,Bizkaia,Bilbao,País Vasco,peninsular,Europe/Madrid,43.2627,-2.9253,3128026
+49,Zamora,Zamora,Castilla y León,peninsular,Europe/Madrid,41.5063,-5.7446,3104342
+50,Zaragoza,Zaragoza,Aragón,peninsular,Europe/Madrid,41.6561,-0.8773,3104324
+51,Ceuta,Ceuta,Ceuta,ceuta,Africa/Ceuta,35.8892,-5.3204,6362987
+52,Melilla,Melilla,Melilla,melilla,Africa/Ceuta,35.2937,-2.9383,2513947
