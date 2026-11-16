@@ -1,0 +1,32 @@
+source_name: ree
+source_type: http_api
+description: "Red Electrica de Espana public API: hourly market prices (PVPC, spot) and daily generation mix."
+
+auth:
+  type: none
+
+incremental:
+  type: date_range
+  days_back: 90
+  chunk_days: 7
+  date_format: "%Y-%m-%d"
+  end_offset_days: 0
+
+endpoints:
+  - name: prices
+    url: https://apidatos.ree.es/es/datos/mercados/precios-mercados-tiempo-real
+    method: GET
+    response_format: json
+    params:
+      start_date: "{start}T00:00"
+      end_date: "{end}T23:59"
+      time_trunc: hour
+
+  - name: generation
+    url: https://apidatos.ree.es/es/datos/generacion/estructura-generacion
+    method: GET
+    response_format: json
+    params:
+      start_date: "{start}T00:00"
+      end_date: "{end}T23:59"
+      time_trunc: day
