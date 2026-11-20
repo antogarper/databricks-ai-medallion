@@ -1,0 +1,511 @@
+{
+  "datasets": [
+    {
+      "name": "3f95aacd",
+      "displayName": "ds_overview",
+      "queryLines": [
+        "SELECT *,\r\n",
+        "       concat(sources_ok, ' / ', sources) AS sources_ok_label\r\n",
+        "FROM workspace.monitoring_ai.system_overview"
+      ]
+    },
+    {
+      "name": "96313fe5",
+      "displayName": "ds_source_health",
+      "queryLines": [
+        "SELECT source_name, provider, quota_group, unit, health,\r\n",
+        "       CASE health WHEN 'blocked' THEN 1 WHEN 'errors' THEN 2 WHEN 'never_loaded' THEN 3\r\n",
+        "                   WHEN 'delayed' THEN 4 ELSE 5 END AS health_order,\r\n",
+        "       last_run_at, data_loaded_until, expected_data_until, days_behind,\r\n",
+        "       pending_error_chunks, pending_deferred_chunks, blocked_until\r\n",
+        "FROM workspace.monitoring_ai.source_health\r\n",
+        "ORDER BY health_order, source_name"
+      ]
+    },
+    {
+      "name": "471da9b1",
+      "displayName": "ds_table_freshness",
+      "queryLines": [
+        "SELECT table_name, table_type, rows_count, data_sources, latest_data_utc, last_changed_at, quarantined_rows,\r\n",
+        "       round((unix_timestamp(current_timestamp()) - unix_timestamp(last_changed_at)) / 3600, 1) AS hours_since_change\r\n",
+        "FROM workspace.monitoring_ai.table_freshness\r\n",
+        "ORDER BY table_type DESC, table_name"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "c2baa0bf",
+      "displayName": "Overview",
+      "layout": [
+        {
+          "widget": {
+            "name": "sources-ok",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "3f95aacd",
+                  "fields": [
+                    {
+                      "name": "sum(sources_ok)",
+                      "expression": "SUM(`sources_ok`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "showDescription": false,
+                "title": {
+                  "value": "<span style=\"text-align:center;display:block\"><span style=\"font-size: 14px;\">Sources OK</span></span>",
+                  "fields": []
+                }
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(sources_ok)"
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 2,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "f9e80cc2",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "3f95aacd",
+                  "fields": [
+                    {
+                      "name": "sum(sources_blocked)",
+                      "expression": "SUM(`sources_blocked`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "showDescription": false,
+                "title": {
+                  "value": "<span style=\"text-align:center;display:block\"><span style=\"font-size: 14px;\">Sources Blocked</span></span>",
+                  "fields": []
+                }
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(sources_blocked)"
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 2,
+            "y": 0,
+            "width": 3,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "50703c2d",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "3f95aacd",
+                  "fields": [
+                    {
+                      "name": "sum(quarantined_rows)",
+                      "expression": "SUM(`quarantined_rows`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "showDescription": false,
+                "title": {
+                  "value": "<span style=\"text-align:center;display:block\"><span style=\"font-size: 14px;\">Quarantined Rows</span></span>",
+                  "fields": []
+                }
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(quarantined_rows)"
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 5,
+            "y": 0,
+            "width": 2,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "13001212",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "3f95aacd",
+                  "fields": [
+                    {
+                      "name": "sum(errors_last_24h)",
+                      "expression": "SUM(`errors_last_24h`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "showDescription": false,
+                "title": {
+                  "value": "<span style=\"text-align:center;display:block\"><span style=\"font-size: 14px;\">Errors 24h</span></span>",
+                  "fields": []
+                }
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(errors_last_24h)"
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 7,
+            "y": 0,
+            "width": 2,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "7d134198",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "3f95aacd",
+                  "fields": [
+                    {
+                      "name": "sum(silver_rows_today)",
+                      "expression": "SUM(`silver_rows_today`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "frame": {
+                "showTitle": true,
+                "showDescription": false,
+                "title": {
+                  "value": "<span style=\"text-align:center;display:block\"><span style=\"font-size: 14px;\">Silver rows Today</span></span>",
+                  "fields": []
+                }
+              },
+              "version": 2,
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "sum(silver_rows_today)"
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 9,
+            "y": 0,
+            "width": 3,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "6e952024",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "96313fe5",
+                  "fields": [
+                    {
+                      "name": "source_name",
+                      "expression": "`source_name`"
+                    },
+                    {
+                      "name": "health",
+                      "expression": "`health`"
+                    },
+                    {
+                      "name": "days_behind",
+                      "expression": "`days_behind`"
+                    },
+                    {
+                      "name": "pending_deferred_chunks",
+                      "expression": "`pending_deferred_chunks`"
+                    },
+                    {
+                      "name": "pending_error_chunks",
+                      "expression": "`pending_error_chunks`"
+                    },
+                    {
+                      "name": "quota_group",
+                      "expression": "`quota_group`"
+                    },
+                    {
+                      "name": "provider",
+                      "expression": "`provider`"
+                    }
+                  ],
+                  "disaggregated": true,
+                  "orders": [
+                    {
+                      "direction": "ASC",
+                      "expression": "`source_name`"
+                    }
+                  ]
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "table",
+              "encodings": {
+                "columns": [
+                  {
+                    "fieldName": "source_name"
+                  },
+                  {
+                    "fieldName": "health",
+                    "style": {
+                      "type": "basic",
+                      "rules": [
+                        {
+                          "condition": {
+                            "operand": {
+                              "type": "data-value",
+                              "value": "ok"
+                            },
+                            "operator": "="
+                          },
+                          "backgroundColor": {
+                            "themeColorType": "visualizationColors",
+                            "position": 7
+                          }
+                        },
+                        {
+                          "condition": {
+                            "operand": {
+                              "type": "data-value",
+                              "value": "delayed"
+                            },
+                            "operator": "="
+                          },
+                          "backgroundColor": {
+                            "themeColorType": "visualizationColors",
+                            "position": 2
+                          }
+                        },
+                        {
+                          "condition": {
+                            "operand": {
+                              "type": "data-value",
+                              "value": "blocked"
+                            },
+                            "operator": "="
+                          },
+                          "backgroundColor": {
+                            "themeColorType": "visualizationColors",
+                            "position": 8
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "fieldName": "days_behind"
+                  },
+                  {
+                    "fieldName": "pending_deferred_chunks"
+                  },
+                  {
+                    "fieldName": "pending_error_chunks"
+                  },
+                  {
+                    "fieldName": "quota_group"
+                  },
+                  {
+                    "fieldName": "provider"
+                  }
+                ],
+                "rowOrder": [
+                  {
+                    "by": "column",
+                    "field": {
+                      "index": 0
+                    }
+                  }
+                ]
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 2,
+            "width": 12,
+            "height": 4
+          }
+        },
+        {
+          "widget": {
+            "name": "45244f91",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "471da9b1",
+                  "fields": [
+                    {
+                      "name": "table_name",
+                      "expression": "`table_name`"
+                    },
+                    {
+                      "name": "table_type",
+                      "expression": "`table_type`"
+                    },
+                    {
+                      "name": "data_sources",
+                      "expression": "`data_sources`"
+                    },
+                    {
+                      "name": "rows_count",
+                      "expression": "`rows_count`"
+                    },
+                    {
+                      "name": "hours_since_change",
+                      "expression": "`hours_since_change`"
+                    },
+                    {
+                      "name": "quarantined_rows",
+                      "expression": "`quarantined_rows`"
+                    },
+                    {
+                      "name": "last_changed_at",
+                      "expression": "`last_changed_at`"
+                    },
+                    {
+                      "name": "latest_data_utc",
+                      "expression": "`latest_data_utc`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "widgetType": "table",
+              "encodings": {
+                "columns": [
+                  {
+                    "fieldName": "table_name"
+                  },
+                  {
+                    "fieldName": "table_type"
+                  },
+                  {
+                    "fieldName": "data_sources"
+                  },
+                  {
+                    "fieldName": "rows_count"
+                  },
+                  {
+                    "fieldName": "hours_since_change"
+                  },
+                  {
+                    "fieldName": "quarantined_rows"
+                  },
+                  {
+                    "fieldName": "last_changed_at"
+                  },
+                  {
+                    "fieldName": "latest_data_utc"
+                  }
+                ]
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 6,
+            "width": 12,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}
