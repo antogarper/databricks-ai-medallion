@@ -1,0 +1,6 @@
+# Metadata of the reference files in this folder.
+# Used to build the silver data_source table: one entry per csv used by a reference entity.
+locations_es.csv:
+  description: "Spanish provinces: INE code, capital, region, time zone, coordinates and electric system"
+  provider: "INE (province codes) / GeoNames (capitals and coordinates)"
+  license: "INE: reuse with attribution · GeoNames: CC BY 4.0 (attribution required)"

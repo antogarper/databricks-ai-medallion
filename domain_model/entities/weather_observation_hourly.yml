@@ -1,0 +1,68 @@
+entity: weather_observation_hourly
+description: "Observed hourly weather for each Spanish province (reference point: the provincial capital), in UTC."
+domain: weather
+table_type: entity
+grain: "one row per province and hour (UTC)"
+business_keys: [province_code, datetime_utc]
+references:
+  - entity: location
+    columns: [province_code]
+columns:
+  - name: province_code
+    type: string
+    nullable: false
+    description: "INE province code"
+  - name: datetime_utc
+    type: timestamp
+    nullable: false
+    description: "Start of the hour, UTC"
+  - name: observation_latitude
+    type: double
+    unit: degrees
+    range: {min: -90, max: 90}
+    description: "Latitude of the point the values refer to (model grid cell or weather station)"
+  - name: observation_longitude
+    type: double
+    unit: degrees
+    range: {min: -180, max: 180}
+    description: "Longitude of the point the values refer to (model grid cell or weather station)"
+  - name: temperature_c
+    type: double
+    unit: "°C"
+    range: {min: -35, max: 50}
+    description: "Air temperature at 2 m"
+  - name: relative_humidity_pct
+    type: double
+    unit: "%"
+    range: {min: 0, max: 100}
+    description: "Relative humidity at 2 m"
+  - name: precipitation_mm
+    type: double
+    unit: mm
+    range: {min: 0}
+    description: "Total precipitation in the hour"
+  - name: cloud_cover_pct
+    type: double
+    unit: "%"
+    range: {min: 0, max: 100}
+    description: "Total cloud cover"
+  - name: wind_speed_10m_kmh
+    type: double
+    unit: km/h
+    range: {min: 0}
+    description: "Wind speed at 10 m"
+  - name: wind_speed_100m_kmh
+    type: double
+    unit: km/h
+    range: {min: 0}
+    description: "Wind speed at 100 m (wind turbine hub height)"
+  - name: shortwave_radiation_wm2
+    type: double
+    unit: W/m2
+    range: {min: 0, max: 1500}
+    description: "Global horizontal shortwave radiation"
+completeness:
+  time_column: datetime_utc
+  period: day
+  group_by: [province_code]
+  expected_rows: 24

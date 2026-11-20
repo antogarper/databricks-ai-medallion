@@ -1,6 +1,8 @@
 source_name: public_holidays_es
 source_type: http_api
 description: "Nager.Date public holidays API: national and regional public holidays in Spain, one call per year (previous years, current year and next year)."
+provider: "Nager.Date"
+license: "Free / Community API"
 
 auth:
   type: none

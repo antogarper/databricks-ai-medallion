@@ -1,6 +1,8 @@
 source_name: ree
 source_type: http_api
 description: "Red Electrica de Espana public API: hourly market prices (PVPC, spot) and daily generation mix."
+provider: "Red Eléctrica de España (REE)"
+license: "REE terms of use: reuse allowed citing the source"
 
 auth:
   type: none

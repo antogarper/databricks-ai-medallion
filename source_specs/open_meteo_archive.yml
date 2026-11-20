@@ -1,6 +1,8 @@
 source_name: open_meteo_archive
 source_type: http_api
 description: "Open-Meteo historical weather API (observed/reanalysis): hourly temperature, humidity, precipitation, cloud cover, wind speed at 10 m and 100 m and solar radiation for the capitals of the 52 Spanish provinces, in UTC."
+provider: "Open-Meteo"
+license: "CC BY 4.0 (attribution required)"
 
 auth:
   type: none

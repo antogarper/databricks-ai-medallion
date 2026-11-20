@@ -1,0 +1,40 @@
+entity: location
+description: "Spanish provinces with their capital, region, time zone, coordinates and the electric system they belong to."
+domain: geography
+table_type: reference
+reference_file: locations_es.csv
+grain: "one row per Spanish province"
+business_keys: [province_code]
+columns:
+  - name: province_code
+    type: string
+    nullable: false
+    description: "INE province code (2 digits, e.g. '29' = Malaga)"
+  - name: province_name
+    type: string
+    description: "Province name"
+  - name: capital_name
+    type: string
+    description: "Capital city, used as the reference point of the province"
+  - name: region_name
+    type: string
+    description: "Autonomous community (or autonomous city) the province belongs to"
+  - name: electric_system
+    type: string
+    description: "Electric system the province belongs to (peninsular or non-peninsular systems)"
+  - name: timezone
+    type: string
+    description: "IANA time zone of the province (e.g. Europe/Madrid, Atlantic/Canary), used for local-time aggregations"
+  - name: latitude
+    type: double
+    unit: degrees
+    range: {min: 27, max: 44}
+    description: "Latitude of the capital"
+  - name: longitude
+    type: double
+    unit: degrees
+    range: {min: -19, max: 5}
+    description: "Longitude of the capital"
+  - name: geonames_id
+    type: bigint
+    description: "GeoNames identifier of the capital, to join with other geographic sources"

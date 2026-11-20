@@ -1,0 +1,32 @@
+entity: data_source
+description: "Data sources of the platform: bronze source specs, reference files and the platform metadata itself."
+domain: governance
+table_type: reference
+reference_source: source_specs
+grain: "one row per data source"
+business_keys: [source_name]
+columns:
+  - name: source_name
+    type: string
+    nullable: false
+    description: "Data source name: bronze source spec name, reference file name or 'source_specs'"
+  - name: source_type
+    type: string
+    accepted_values: [http_api, reference_file, platform_metadata]
+    description: "How the data is obtained"
+  - name: provider
+    type: string
+    description: "Organisation that provides the data"
+  - name: description
+    type: string
+    description: "What the data source contains"
+  - name: license
+    type: string
+    description: "License or terms of use of the data, including attribution requirements"
+  - name: base_url
+    type: string
+    description: "Base URL of the API, or path of the reference file"
+  - name: status
+    type: string
+    accepted_values: [active, decommissioned]
+    description: "Whether the data source is still ingested"

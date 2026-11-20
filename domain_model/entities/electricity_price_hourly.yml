@@ -1,0 +1,26 @@
+entity: electricity_price_hourly
+description: "Hourly electricity price in Spain by price type, in EUR/MWh and UTC."
+domain: energy_market
+table_type: entity
+grain: "one row per price type and hour (UTC)"
+business_keys: [price_type, datetime_utc]
+columns:
+  - name: price_type
+    type: string
+    nullable: false
+    accepted_values: [pvpc, day_ahead_spot]
+    description: "Canonical price type: pvpc (regulated consumer price) or day_ahead_spot (day-ahead market price)"
+  - name: datetime_utc
+    type: timestamp
+    nullable: false
+    description: "Start of the hour, UTC"
+  - name: price_eur_mwh
+    type: double
+    unit: EUR/MWh
+    range: {min: -500, max: 4000}
+    description: "Price for that hour"
+completeness:
+  time_column: datetime_utc
+  period: day
+  group_by: [price_type]
+  expected_rows: 24
