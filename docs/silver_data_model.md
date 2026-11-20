@@ -9,7 +9,7 @@ _Generated from `domain_model/entities/` by `write_data_model_doc`. Do not edit 
 
 ```mermaid
 erDiagram
-  data_source ||--o{ electricity_price_hourly : "FKDataSource"
+  data_source ||--o{ electricity_price : "FKDataSource"
   data_source ||--o{ location : "FKDataSource"
   data_source ||--o{ weather_observation_hourly : "FKDataSource"
   location ||--o{ weather_observation_hourly : "FKLocation"
@@ -24,11 +24,12 @@ erDiagram
     string base_url
     string status
   }
-  electricity_price_hourly {
-    string PKElectricityPriceHourly PK
+  electricity_price {
+    string PKElectricityPrice PK
     string FKDataSource FK
     string price_type
     timestamp datetime_utc
+    int resolution_minutes
     double price_eur_mwh
     string source_name
   }
@@ -63,7 +64,7 @@ erDiagram
     string source_name
   }
   classDef entity fill:#E1F5EE,stroke:#0F6E56,color:#04342C
-  class electricity_price_hourly,weather_observation_hourly entity
+  class electricity_price,weather_observation_hourly entity
   classDef reference fill:#EEEDFE,stroke:#534AB7,color:#26215C
   class data_source,location reference
 ```
@@ -88,11 +89,11 @@ erDiagram
 - **Primary key:** `PKDataSource` = md5(source_name)
 - **Foreign key:** `FKDataSource` = md5('source_specs') → `data_source.PKDataSource`
 
-### `workspace.silver_ai.electricity_price_hourly`
-- **Entity:** `electricity_price_hourly` (energy_market) · role: entity
-- **Description:** Hourly electricity price in Spain by price type, in EUR/MWh and UTC.
-- **Grain:** one row per price type and hour (UTC) and data source
-- **Primary key:** `PKElectricityPriceHourly` = md5(price_type, datetime_utc, source_name)
+### `workspace.silver_ai.electricity_price`
+- **Entity:** `electricity_price` (energy_market) · role: entity
+- **Description:** Electricity price in Spain by price type, at the resolution published by the source (hourly or quarter-hourly), in EUR/MWh and UTC.
+- **Grain:** one row per price type and period start (UTC) and data source
+- **Primary key:** `PKElectricityPrice` = md5(price_type, datetime_utc, source_name)
 - **Foreign key:** `FKDataSource` = md5(source_name) → `data_source.PKDataSource`
 
 ### `workspace.silver_ai.location`
