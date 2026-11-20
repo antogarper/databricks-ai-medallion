@@ -17,6 +17,19 @@ load:
   end_offset: -5                # the archive API publishes data with a ~5 day delay
   date_format: "%Y-%m-%d"
 
+limits:
+  quota_group: open_meteo
+  per_minute: 600
+  per_hour: 5000
+  per_day: 10000
+  min_seconds_between_calls: 1
+  cost:
+    per_location: true
+    days_per_unit: 14
+    variables_param: hourly
+    variables_per_unit: 10
+  terms_url: https://open-meteo.com/en/terms
+
 endpoints:
   - name: hourly_weather
     url: https://archive-api.open-meteo.com/v1/archive

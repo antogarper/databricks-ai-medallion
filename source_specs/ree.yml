@@ -17,6 +17,13 @@ load:
   end_offset: 0                 # up to today
   date_format: "%Y-%m-%d"
 
+limits:
+  quota_group: ree
+  per_minute: 30
+  per_hour: 500
+  per_day: 3000
+  min_seconds_between_calls: 1
+
 endpoints:
   - name: prices
     url: https://apidatos.ree.es/es/datos/mercados/precios-mercados-tiempo-real

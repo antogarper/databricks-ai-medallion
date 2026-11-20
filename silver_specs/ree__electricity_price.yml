@@ -16,8 +16,7 @@ columns:
     from: point.datetime
     timezone: offset
   resolution_minutes:
-    from: indicator.id
-    map_values: {"1001": 60, "600": 15}
+    interval_of: datetime_utc
   price_eur_mwh:
     from: point.value
 source_record_id: indicator.id
