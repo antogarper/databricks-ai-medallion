@@ -1,0 +1,32 @@
+mapping: open_meteo_archive__weather_observation_hourly
+entity: weather_observation_hourly
+source:
+  source_name: open_meteo_archive
+  endpoint: hourly_weather
+parse:
+  - explode: payload
+    as: location
+    position: location_index
+  - zip_explode:
+      as: hour
+      arrays:
+        time: location.hourly.time
+        temperature_2m: location.hourly.temperature_2m
+        relative_humidity_2m: location.hourly.relative_humidity_2m
+        precipitation: location.hourly.precipitation
+        cloud_cover: location.hourly.cloud_cover
+        wind_speed_10m: location.hourly.wind_speed_10m
+        wind_speed_100m: location.hourly.wind_speed_100m
+        shortwave_radiation: location.hourly.shortwave_radiation
+columns:
+  province_code:           {from: location_code}
+  datetime_utc:            {from: hour.time, timezone: UTC}
+  observation_latitude:    {from: location.latitude}
+  observation_longitude:   {from: location.longitude}
+  temperature_c:           {from: hour.temperature_2m}
+  relative_humidity_pct:   {from: hour.relative_humidity_2m}
+  precipitation_mm:        {from: hour.precipitation}
+  cloud_cover_pct:         {from: hour.cloud_cover}
+  wind_speed_10m_kmh:      {from: hour.wind_speed_10m}
+  wind_speed_100m_kmh:     {from: hour.wind_speed_100m}
+  shortwave_radiation_wm2: {from: hour.shortwave_radiation}

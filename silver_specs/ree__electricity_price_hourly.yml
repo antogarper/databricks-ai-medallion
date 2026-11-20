@@ -1,0 +1,20 @@
+mapping: ree__electricity_price_hourly
+entity: electricity_price_hourly
+source:
+  source_name: ree
+  endpoint: prices
+parse:
+  - explode: payload.included
+    as: indicator
+  - explode: indicator.attributes.values
+    as: point
+columns:
+  price_type:
+    from: indicator.id
+    map_values: {"1001": pvpc, "600": day_ahead_spot}
+  datetime_utc:
+    from: point.datetime
+    timezone: offset
+  price_eur_mwh:
+    from: point.value
+source_record_id: indicator.id
