@@ -186,8 +186,8 @@
                   "datasetName": "3f95aacd",
                   "fields": [
                     {
-                      "name": "sum(errors_last_24h)",
-                      "expression": "SUM(`errors_last_24h`)"
+                      "name": "sum(open_errors)",
+                      "expression": "SUM(`open_errors`)"
                     }
                   ],
                   "disaggregated": false
@@ -199,7 +199,7 @@
                 "showTitle": true,
                 "showDescription": false,
                 "title": {
-                  "value": "<span style=\"text-align:center;display:block\"><span style=\"font-size: 14px;\">Errors 24h</span></span>",
+                  "value": "<span style=\"text-align:center;display:block\"><span style=\"font-size:14px\">Open Errors</span></span>",
                   "fields": []
                 }
               },
@@ -207,7 +207,7 @@
               "widgetType": "counter",
               "encodings": {
                 "value": {
-                  "fieldName": "sum(errors_last_24h)"
+                  "fieldName": "sum(open_errors)"
                 }
               },
               "data": {
@@ -270,7 +270,7 @@
         },
         {
           "widget": {
-            "name": "6e952024",
+            "name": "source-health",
             "queries": [
               {
                 "name": "main_query",
@@ -317,6 +317,13 @@
               }
             ],
             "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "Source Health",
+                  "fields": []
+                }
+              },
               "version": 2,
               "widgetType": "table",
               "encodings": {
@@ -410,7 +417,7 @@
         },
         {
           "widget": {
-            "name": "45244f91",
+            "name": "silver-tables",
             "queries": [
               {
                 "name": "main_query",
@@ -455,6 +462,13 @@
               }
             ],
             "spec": {
+              "frame": {
+                "showTitle": true,
+                "title": {
+                  "value": "Silver tables",
+                  "fields": []
+                }
+              },
               "version": 2,
               "widgetType": "table",
               "encodings": {
